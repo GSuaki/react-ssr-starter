@@ -1,4 +1,3 @@
-const devMode = process.env.NODE_ENV !== "production";
 const path = require( "path" );
 const webpack = require('webpack');
 
@@ -7,6 +6,8 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const { BundleAnalyzerPlugin } = require( "webpack-bundle-analyzer" );
 const FriendlyErrorsWebpackPlugin = require( "friendly-errors-webpack-plugin" );
+
+const devMode = process.env.NODE_ENV !== "production";
 
 const plugins = [
     new CleanWebpackPlugin([
@@ -45,7 +46,10 @@ module.exports = {
                 test: /\.jsx?$/,
                 exclude: /(node_modules|bower_components)/,
                 use: {
-                    loader: "babel-loader"
+                    loader: "babel-loader",
+                    options: {
+                        presets: ['react']
+                    }
                 }
             },
             {

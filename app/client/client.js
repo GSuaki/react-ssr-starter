@@ -2,8 +2,8 @@ import React from "react";
 import createHistory from 'history/createBrowserHistory';
 
 import { hydrate } from "react-dom";
-import { BrowserRouter as Router } from "react-router-dom";
 import { Provider as ReduxProvider } from "react-redux";
+import { BrowserRouter as Router } from "react-router-dom";
 
 import createStore from "../store";
 import Layout from "../components/Layout";
