@@ -10,7 +10,7 @@ import Layout from "../components/Layout";
 
 import '../styles/index.scss';
 
-const store = window.store || createStore( window.REDUX_DATA );
+const store = window.store || createStore();
 const browserHistory = window.browserHistory || createHistory();
 
 hydrate( 

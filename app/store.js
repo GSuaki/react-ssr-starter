@@ -1,49 +1,21 @@
-import { createStore, combineReducers, applyMiddleware } from "redux";
-import thunkMiddleware from "redux-thunk";
-import { fetchCircuits } from "../api/api";
+import thunk from "redux-thunk";
+import reducers from './store/reducers';
+import { composeWithDevTools } from 'redux-devtools-extension'
+import { createStore, applyMiddleware, compose } from "redux";
 
-export const initializeSession = ( ) => ( {
-    type: "INITIALIZE_SESSION",
-} );
+/**
+ * Init
+ */
+const isBrowser = typeof window !== 'undefined';
 
-const storeData = ( data ) => ( {
-    type: "STORE_DATA",
-    data,
-} );
+const composeEnhancers = isBrowser ? composeWithDevTools : compose;
 
-const increaseCountData = ( ) => ( {
-    type: "INCREASE_COUNT"
-} );
+export default ( ) => {
+    const preloadedState = isBrowser && window.__PRELOADED_STATE__ ? window.__PRELOADED_STATE__ : {};
 
-export const fetchData = ( ) => ( dispatch ) =>
-    fetchCircuits( ).then( res => dispatch( storeData( res ) ) );
-
-export const increaseCount = ( ) => ( dispatch ) => dispatch( increaseCountData( ) );
-
-const sessionReducer = ( state = false, action ) => {
-    switch ( action.type ) {
-        case "INITIALIZE_SESSION":
-            return true;
-        default: return state;
-    }
-};
-
-const dataReducer = ( state = { count: 0 }, action ) => {
-    switch ( action.type ) {
-        case "STORE_DATA":
-            return Object.assign({}, state, { circuits: action.data });
-        case "INCREASE_COUNT":
-            return Object.assign({}, state, {
-                count: state.count + 1
-            })
-        default: return state;
-    }
-};
-
-const reducer = combineReducers( {
-    loggedIn: sessionReducer,
-    data: dataReducer,
-} );
-
-export default ( initialState ) =>
-    createStore( reducer, initialState, applyMiddleware( thunkMiddleware ) );
+    return createStore(
+        reducers, 
+        preloadedState, 
+        composeEnhancers(applyMiddleware( thunk ) )
+    );
+}

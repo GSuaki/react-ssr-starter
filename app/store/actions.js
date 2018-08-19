@@ -1,0 +1,10 @@
+
+export const INCREASE_COUNT = 'INCREASE/COUNT';
+export const INITIALIZE_SESSION = 'INITIALIZE/SESSION';
+export const STORE_DATA = 'STORE/DATA';
+
+export default {
+  INCREASE_COUNT,
+  INITIALIZE_SESSION,
+  STORE_DATA
+}

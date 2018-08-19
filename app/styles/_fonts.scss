@@ -1,0 +1,46 @@
+$font_path: '../assets/fonts/';
+
+@font-face {
+  font-family: 'GothanRoundedBook';
+  src: url($font_path + "Gotham-Book.otf") format("opentype");
+}
+
+@font-face {
+  font-family: 'GothanRoundedLight';
+  src: url($font_path + "Gotham-Light.otf") format("opentype");
+}
+
+@font-face {
+  font-family: 'GothanRoundedMedium';
+  src: url($font_path + "Gotham-Medium.otf") format("opentype");
+}
+
+@font-face {
+  font-family: 'GothanRoundedBold';
+  src: url($font_path + "Gotham-Bold.otf") format("opentype");
+}
+
+@font-face {
+  font-family: 'RobotoRegular';
+  src: url($font_path + "Roboto-Regular.ttf") format("truetype");
+}
+
+.roboto-regular {
+  font-family: "RobotoRegular";
+}
+
+.gotham-book {
+  font-family: "GothanRoundedBook";
+}
+
+.gotham-light {
+  font-family: "GothanRoundedLight";
+}
+
+.gotham-medium {
+  font-family: "GothanRoundedMedium";
+}
+
+.gotham-bold {
+  font-family: "GothanRoundedBold";
+}

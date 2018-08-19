@@ -57,7 +57,7 @@ module.exports = {
                 exclude: /(node_modules|bower_components)/,
                 use: ExtractTextPlugin.extract({
                     fallback: "style-loader",
-                    use: "css-loader!sass-loader",
+                    use: ['css-loader', 'resolve-url-loader', 'sass-loader?sourceMap']
                 })  
             },
             {
@@ -65,8 +65,23 @@ module.exports = {
                 use: [
                   { loader: 'postcss-loader', options: { syntax: 'sugarss' } }
                 ]
-              }
-              
+            },
+            {
+                test: /\.(eot|svg|ttf|otf|woff|woff2)$/,
+                loader: 'file-loader',
+                options: {
+                    name: '[path][name].[ext]'
+                }
+            },
+            {
+                test: /\.(png|jpg|gif)$/,
+                use: [
+                  {
+                    loader: 'file-loader',
+                    options: {}
+                  }
+                ]
+            }
         ],
     },
     output: {
